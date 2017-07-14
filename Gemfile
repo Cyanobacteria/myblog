@@ -6,8 +6,8 @@ git_source(:github) do |repo_name|
 end
 #jquery
 gem "jquery-rails"
-
-
+#devise
+gem 'devise'
 #Password hash by bcrypt
 gem 'bcrypt', '3.1.11'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
