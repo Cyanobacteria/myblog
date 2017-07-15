@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :set_post, only: [:only_view_show_one]
+  before_action :set_post, only: [:show]
   def home
   end
 
