@@ -1,12 +1,17 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, only: [:edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:show_current_admin, :edit, :update, :destroy]
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
+    #@add = current_admin.email
   end
 
+
+  def show_current_admin
+    @posts = Post.where("admin_id = #{current_admin.id}")
+  end
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -24,8 +29,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
+    #@post = Post.new(post_params)
+    @post = current_admin.posts.build(post_params)
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -68,7 +73,8 @@ class PostsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :admin_id)
     end
 end

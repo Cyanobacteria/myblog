@@ -28,10 +28,12 @@
 
 <%= link_to 'New Post', new_post_path %>
 -->
+  <%# help_for_delop_admin %>
 
 <% @posts.each do |post| %>
 	<div class="post_wrapper">
-		<h2 class="title"><%= link_to post.title, post %></h2>
-		<p class="date"><%= post.created_at.strftime("%B %d, %Y") %></p>
+		<h2 class="title"><%="標題"%><br><%= link_to post.title, post %></h2>
+		<p class="date"><%= "創立:" + post.created_at.strftime("%B %d, %Y") %>
+                    <br><%="作者:" + fine_name_by_admin_id(post.admin_id)%></p>
 	</div>
 <% end %>
