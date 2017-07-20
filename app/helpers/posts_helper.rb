@@ -1,14 +1,31 @@
 module PostsHelper
-  def fine_name_by_admin_id(id)
-    @admin = Admin.all
-    if @admin.find(id).name == nil
-      @admin.find(id).email
+  def find_name_by_admin_id(id)
+    admin = Admin.all
+    if admin.find(id).name == nil
+      admin.find(id).email
     else
-      @admin.find(id).name
+      admin.find(id).name
     end
   end
 
-  def show_all
+  def log_content
+    content = ""
+    if admin_signed_in?
+      content = find_name_by_admin_id(current_admin.id)
+      content
+    else
+      content = "BLOGS"
+      content
+    end
+  end
+
+  def show_current_admin_posts_path
+    if admin_signed_in?
+      static_pages_home_path
+    end
+  end
+
+  def profile_path
 
   end
 

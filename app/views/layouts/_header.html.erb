@@ -1,17 +1,13 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "MY BLOG", root_path, id: "logo" %>
+    <%= link_to log_content, show_current_admin_posts_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",  static_pages_home_path %></li>
-        <li><%= link_to "About",   '#' %></li>
         <% if admin_signed_in? %>
+          <li><%= link_to "Others",  static_pages_home_path %></li>
+          <li><%= link_to "Myposts",   show_current_admin_posts_path %></li>
           <li><%= link_to("New post", new_post_path) %></li>
-
-
           <li><%= link_to("Log out", destroy_admin_session_path, :method => :delete) %></li>
-
-
         <% else %>
           <li><%= link_to("Sign up", new_admin_registration_path) %></li>
           <li><%= link_to("Log in", new_admin_session_path) %></li>
