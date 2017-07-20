@@ -9,12 +9,11 @@ module PostsHelper
   end
 
   def log_content
-    content = ""
+    content = "BLOGS"
     if admin_signed_in?
       content = find_name_by_admin_id(current_admin.id)
       content
     else
-      content = "BLOGS"
       content
     end
   end
